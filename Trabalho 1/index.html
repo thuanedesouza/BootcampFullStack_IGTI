@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="./css/reset.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <title>Trabalho 01</title>
+</head>
+
+<body>
+  <div class="texto">
+    <h1>Trabalho 01</h1>
+    <h2>Módulo 01 - Bootcamp IGTI 2020</h2>
+    <h4>Objetivo</h4>
+    <h6>
+      Exercitar os seguintes conceitos trabalhados no Módulo:
+      <lu>
+        <li>Utilização de elementos HTML.</li>
+        <li>Utilização de CSS.</li>
+        <li>Utilização de identificadores em elementos HTML.</li>
+        <li>aptura de referência de elementos com JavaScript.</li>
+        <li>Manipulação de eventos com JavaScript.</li>
+        <li>Utilização de funções com JavaScript e CSS.</li>
+        <li>Manipulação direta de CSS com JavaScript.</li>
+      </lu>
+    </h6>
+    <h4>Enunciado</h4>
+    <h6>
+      Construa, utilizando HTML, CSS e JavaScript puro,
+      uma aplicação para a
+      visualização de cores a partir da escala RGB.
+    </h6>
+  </div>
+
+  <div class="rangeRGB">
+    <p>
+      <label>Explore as cores com o padrão RGB</label>
+    </p>
+    <div class="color">
+
+    </div>
+    <div class="rgb">
+
+    </div>
+
+    <div class="sliders">
+      <label>Red (R)</label>
+      <div class=range>
+        <input type="range" class="slider" min="0" max="255" value="0" id="redInput" />
+        <input type="text" id="showRInput" class="redInput" placeholder="0" readonly />
+      </div>
+
+      <label>Green (G)</label>
+      <div class=range>
+        <input type="range" class="slider" min="0" max="255" value="0" id="greenInput" />
+        <input type="text" id="showGInput" placeholder="0" readonly />
+      </div>
+
+      <label>Blue (B)</label>
+      <div class=range>
+        <input type="range" class="slider" min="0" max="255" value="0" id="blueInput" />
+        <input type="text" id="showBInput" placeholder="0" readonly>
+
+      </div>
+    </div>
+
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
