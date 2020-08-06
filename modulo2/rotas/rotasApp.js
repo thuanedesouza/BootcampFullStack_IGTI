@@ -1,3 +1,5 @@
+//rotas no nível da aplicação
+
 import express from "express";
 //criando uma instancia do express
 const app = express();
