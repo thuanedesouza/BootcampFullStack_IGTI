@@ -7,6 +7,7 @@ const { readFile, writeFile } = fs;
 global.fileName = "accounts.json";
 
 const router = express.Router();
+
 router.post("/", async (req, res, next) => {
   try {
     //pegar info
@@ -23,8 +24,11 @@ router.post("/", async (req, res, next) => {
     data.accounts.push(account);
     //sobrescrever arquivo
     await writeFile(global.fileName, JSON.stringify(data, null, 2));
+
+
     res.send(account);
     res.end();
+    logger.info(`POST/ account - ${JSON.stringify(account)}`)
   } catch (err) {
     next(err);
   }
@@ -36,6 +40,7 @@ router.get("/", async (req, res, next) => {//todas as contas
     const data = JSON.parse(await readFile(global.fileName));
     delete data.nextId;
     res.send(data);
+    logger.info("GET/account");
   } catch (err) {
     next(err);
   }
@@ -47,6 +52,7 @@ router.get("/:id", async (req, res, next) => {
     const account = data.accounts.find(account =>
       account.id === parseInt(req.params.id))
     res.send(account);
+    logger.info("GET/account/:id");
   } catch (err) {
     next(err);
   }
@@ -58,6 +64,7 @@ router.delete("/:id", async (req, res, next) => {
     data.accounts = data.accounts.filter(account => account.id !== parseInt(req.params.id));
     await writeFile(global.fileName, JSON.stringify(data, null, 2));
     res.end();
+    logger.info(`DELETE /account/:id, ${req.params.id}`)
   } catch (err) {
     next(err);
   }
@@ -74,6 +81,7 @@ router.put("/", async (req, res, next) => {
     data.accounts[index] = account;
     await writeFile(global.fileName, JSON.stringify(data));
     res.send(account);
+    logger.info(`PUT/ account - ${JSON.stringify(account)}`)
   } catch (err) {
     next(err);
   }
@@ -87,13 +95,15 @@ router.patch("/updateBalance", async (req, res, next) => {
     data.accounts[index].balance = account.balance;
     await writeFile(global.fileName, JSON.stringify(data));
     res.send(data.accounts[index]);
+    logger.info(`PATCH/account/updateBalance - ${JSON.stringify(account)}`)
   } catch (err) {
     next(err);
   }
 })
 
 router.use((err, req, res, next) => {
-  console.log(err);
+  logger.error(`${err.message}`);
+
   res.status(400).send({ error: err.message });
 })
 //patch fazr alterações parciais
