@@ -12,15 +12,21 @@ router.post("/", async (req, res, next) => {
   try {
     //pegar info
     let account = req.body;
+    //validação
+    if (!account.name || account.balance == null) {
+      throw new Error(" Name and balance needed.");
+    }
     //ler o arquivo e salvar em memoria
     const data = JSON.parse(await readFile(global.fileName));//usar global deixa mais declarativo
     //nova conta
 
-    account = { id: data.nextId++, ...account };
+    account = {
+      id: data.nextId++,
+      name: account.name,
+      balance: account.balance
+    };
     // com id: data.nextId++ ele vai atribuir e depois incrementar a variavel de data
     //data.nextId++;
-    account.id = data.nextId;
-
     data.accounts.push(account);
     //sobrescrever arquivo
     await writeFile(global.fileName, JSON.stringify(data, null, 2));
@@ -75,13 +81,24 @@ router.delete("/:id", async (req, res, next) => {
 router.put("/", async (req, res, next) => {
   try {
     let account = req.body;
+    //validação
+    if (!account.name || account.balance == null) {
+      throw new Error(" Name and balance needed.");
+    }
+
     const data = JSON.parse(await readFile(global.fileName));
     const index = data.accounts.findIndex(acc => acc.id === parseInt(account.id));
 
-    data.accounts[index] = account;
+    //validação
+    if (index === -1) {
+      throw new Error("Registro não encontrado");
+    }
+
+    data.accounts[index].name = account.name;
+    data.accounts[index].balance = account.balance;
     await writeFile(global.fileName, JSON.stringify(data));
     res.send(account);
-    logger.info(`PUT/ account - ${JSON.stringify(account)}`)
+    logger.info(`PUT/ account - ${JSON.stringify(account, null, 2)}`)
   } catch (err) {
     next(err);
   }
@@ -91,6 +108,15 @@ router.patch("/updateBalance", async (req, res, next) => {
     let account = req.body;
     const data = JSON.parse(await readFile(global.fileName));
     const index = data.accounts.findIndex(acc => acc.id === parseInt(account.id));
+    //validacao
+    //validação
+    if (!account.id || account.balance == null) {
+      throw new Error(" ID and balance needed.");
+    }
+
+    if (index === -1) {
+      throw new Error("Registro não encontrado");
+    }
 
     data.accounts[index].balance = account.balance;
     await writeFile(global.fileName, JSON.stringify(data));
