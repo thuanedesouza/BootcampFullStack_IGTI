@@ -97,3 +97,6 @@
 2020-08-09T01:43:33.135Z[my-banl-api  info: API started]
 2020-08-09T01:44:16.312Z[my-banl-api  info: API started]
 2020-08-09T01:44:29.530Z[my-banl-api  info: POST/ account - {"id":5,"name":"aaaaaa","balance":0}]
+2020-08-09T14:10:02.266Z[my-banl-api  info: API started]
+2020-08-09T14:10:11.577Z[my-banl-api  info: GET/account]
+2020-08-09T14:12:09.350Z[my-banl-api  info: GET/account]

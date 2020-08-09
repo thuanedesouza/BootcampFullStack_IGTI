@@ -2,6 +2,7 @@ import express from "express";
 import winston from "winston";
 import { promises as fs } from "fs";
 import accountsRouter from "./routes/accounts.js"
+import cors from "cors";
 
 const { readFile, writeFile } = fs;
 const { combine, timestamp, label, printf } = winston.format;
@@ -25,7 +26,9 @@ global.logger = winston.createLogger({
 const app = express();
 
 app.use(express.json());
-
+app.use(cors()); // para liberar a api toda para ser utilizada em ouros domínios
+//caso queremos liberar apenas um endpoint específico basta aplicar direto nele app.metodohttp("/", cors(), (req, res)=> ..)
+app.use(express.static("public"));
 app.use("/account", accountsRouter);
 
 app.listen(3000, async () => {
