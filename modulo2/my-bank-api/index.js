@@ -28,7 +28,7 @@ const app = express();
 app.use(express.json());
 app.use(cors()); // para liberar a api toda para ser utilizada em ouros domínios
 //caso queremos liberar apenas um endpoint específico basta aplicar direto nele app.metodohttp("/", cors(), (req, res)=> ..)
-app.use(express.static("public"));
+app.use(express.static("public"));// compartilhando essa pasta com o servidor
 app.use("/account", accountsRouter);
 
 app.listen(3000, async () => {
