@@ -1,0 +1,24 @@
+.flexRow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    justify-content: center;
+    border: 1px solid lightgoldenrodyellow;
+    border-radius: 5px;
+}
+
+.calculos{
+    min-width: 120px;
+    max-width: 120px;
+    border: 1px solid lightgoldenrodyellow;
+    
+    min-height: 120px;
+    margin: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: row;
+    justify-content: center;
+}
