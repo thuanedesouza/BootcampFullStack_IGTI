@@ -36,7 +36,7 @@ export default class Users extends Component {
                 <p>Component Users visível por {secondsVisible} segundos</p>
                 <ul>
                 {users.map(user=>{
-                     const {login} = user;
+                     const {login, name, picture} = user;
                      return <li key = {login.uuid}>
                         <User user = {user}/></li>
                 
