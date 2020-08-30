@@ -16,12 +16,11 @@ const studentsSchema = mongoose.Schema({
   value: {
     type: Number,
     require: true,
-    min: 0
-    // validade(value) {
-    //   if (value < 0) {
-    //     throw new Error('Valor negativo!')
-    //   }
-    // }
+    validade(value) {
+      if (value < 0) {
+        throw new Error('Valor negativo!')
+      }
+    }
   },
   lastModified: {
     type: Date,
